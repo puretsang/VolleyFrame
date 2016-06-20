@@ -6,17 +6,26 @@ app为示例。网络调用可参考LoginRequest
 
 //网络请求，ICallback为网络回调
 private void setRequest(String phoneNum, String password) {
+
         LoginRequest request = new LoginRequest(phoneNum,password);
+
         request.setCallback(new ICallback<BaseNetBean<UserLogin>>() {
+
             @Override
             public void onSuccess(BaseNetBean<UserLogin> data) {
+
                 if(null != data){
+
                     if(0 == data.getStatus()){
+
                         showProgress(false);
                         setupPointView();
                         Toast.makeText(LoginActivity.this,"Successfuly~",Toast.LENGTH_LONG).show();
+
                     }else{
+
                         mPasswordView.setError(data.getInfo());
+
                     }
                 }
             }
